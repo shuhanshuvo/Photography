@@ -67,7 +67,6 @@
                             Submit
                         </button>
                     </div>
-
                 </form>
             </div> <!-- end card-box -->
         </div>

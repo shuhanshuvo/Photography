@@ -24,12 +24,18 @@ class AdminController extends Controller
     	return view('admin.user.user',compact('users'));
     }
 
-    public function user_delete(Request $request)
+    // public function user_delete(Request $request)
+    // {
+    //     $user = User::where('id',$request->deleteuser)->first();
+    //     $user->delete();
+    //     return back()->with('success','User Deleted');
+    // }
+    public function user_delete($id)
     {
-        $user = User::where('id',$request->deleteuser)->first();
-        $user->delete();
+        User::findOrFail($id)->delete();
         return back()->with('success','User Deleted');
     }
+
 
 
 
@@ -66,6 +72,7 @@ class AdminController extends Controller
            $service = new Service;
 
            $service->service_name = $request->service_name;
+           $service->price = $request->price;
            $service->description = $request->description;
            $service->save();
 
@@ -77,6 +84,33 @@ class AdminController extends Controller
             $services = Service::all();
             return view ('admin.services.all_services', compact('services'));
          }
+
+
+         public function service_delete($id)
+    {
+        Service::findOrFail($id)->delete();
+        return back()->with('success','Service Deleted');
+    }
+
+
+
+     public function user_profile_update(Request $request)
+    {   
+
+        return $data = $request->all();
+        $user = User::where('id',Auth::user()->id)->first();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->company = $request->company;
+        $user->address = $request->address;
+        $user->country = $request->country;
+        $user->zip = $request->zip;
+        $user->phone = $request->phone;
+        $user->save();
+
+        return back()->with('success','Profile Updated');
+    }
 
 
 

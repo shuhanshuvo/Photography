@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Service;
 
 class UserController extends Controller
 {
@@ -20,11 +21,12 @@ class UserController extends Controller
         $user->company = $request->company;
         $user->address = $request->address; 
         $user->country = $request->country; 
+        $user->role= 0;
         $user->zip = $request->zip; 
         $user->phone = $request->phone; 
         $user->password = bcrypt($request->password);
         $user->save();
-        return Redirect('/login');
+        return Redirect('/login')->with('success','User registration Successfully');;
         
     }
 
@@ -73,5 +75,12 @@ class UserController extends Controller
             $user->save();
             return back()->with('success','Password Changed');
         }
+    }
+
+
+    public function show_services()
+    {   
+        $services = Service::all();
+        return view('user.show_services',compact('services'));
     }
 }

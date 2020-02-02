@@ -3,34 +3,35 @@
 
 <div class="container">
 
-        <form class="form-horizontal" action="{{route('add.service')}}" method="post" enctype="multipart/form-data">
-            {{csrf_field()}}
-          <fieldset>
-
-              <div class="control-group">
-                <label class="control-label">Service Title</label>
-                <div class="controls">
-                  <input type="text"  style="width: 50%; border-radius: 2px;" name="service_name" placeholder="service name" required="">
+     <form class="parsley-examples" action="{{route('add.service')}}" novalidate="" method="post">
+            @csrf
+            <div class="row" style=" width: 40%;">
+                <div class="form-group col-md-12">
+                    <label for="emailaddress">Service Name</label>
+                    <input class="form-control" type="text" name="service_name" value="" id="emailaddress" required="" placeholder="Enter your email" >
                 </div>
-            </div>
-            <br>
-
-            <div class="control-group">
-                <label class="control-label">Service Description</label>
-                <div class="controls" >
-                  <textarea type="text" name="description" style="width: 50%; border-radius: 3px;" placeholder="description" required="" rows="5"></textarea>
+                <div class="form-group col-md-12">
+                    <label for="emailaddress">Price</label>
+                    <input class="form-control" type="number" name="price" value="" id="emailaddress" required=""  >
                 </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Add Service</button>
-              <button type="reset" class="btn">Cancel</button>
-            </div>
+                <div class="form-group col-md-12">
+                    <label for="emailaddress">Description</label>
+                    <input class="form-control" type="text" name="description" value="" id="emailaddress" required="" placeholder="Enter your email" >
+                </div>
 
-          </fieldset>
+            </div>
+            <button class="btn btn-gradient waves-effect waves-light" type="submit">
+                    Submit
+                </button>
+
+
+            <!-- div class="form-group text-right mb-0">
+                <button class="btn btn-gradient waves-effect waves-light" type="submit">
+                    Submit
+                </button>
+            </div> -->
         </form>
-
-
-</div>
+      </div>
 
 @endsection
 

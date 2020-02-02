@@ -125,9 +125,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('show.services')}}">
                             <i class="fe-airplay"></i>
-                            <span>Upgrade Account </span>
+                            <span>Services</span>
                         </a>
                     </li>
                     <li>

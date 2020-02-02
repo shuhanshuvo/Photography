@@ -43,13 +43,18 @@ Route::group(['middleware' => ['auth:admin']], function() {
          Route::get('/users-get', 'AdminController@users_get')->name('get.users');
         // Route::get('/edit-user/{id}', 'AdminUserController@edit_user')->name('admin.edit.user');
         // Route::post('/edit-user-update', 'AdminUserController@edit_user_update')->name('admin.profile.update');
-        Route::post('/user-delete', 'AdminController@user_delete')->name('admin.user.delete');
+        // Route::post('', 'AdminController@user_delete')->name('admin.user.delete');
+        Route::get('/user-delete/{id}', 'AdminController@user_delete')->name('admin.user.delete');
 
         // Servicess
 
         Route::get('add-service-page','AdminController@add_service_page')->name('add.service.page');
         Route::post('add-service','AdminController@add_service')->name('add.service');
         Route::get('all-services', 'AdminController@all_service')->name('all.services');
+        Route::post('/profile-update', 'AdminController@user_profile_update')->name('admin.user.profile.update');
+
+        Route::get('/service-delete/{id}', 'AdminController@service_delete')->name('admin.service.delete');
+
 
 
 
@@ -59,14 +64,17 @@ Route::group(['middleware' => ['auth:admin']], function() {
 
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::group(['prefix' => 'home'], function (){
-        Route::get('/', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'home'], function (){
+    Route::get('/', 'HomeController@index')->name('home');
 
         
 
-        Route::get('/profile', 'UserController@profile')->name('user.profile');
+    Route::get('/profile', 'UserController@profile')->name('user.profile');
+    Route::post('/profile-update', 'UserController@profile_update')->name('user.profile.update');
 
-        Route::post('/profile-update', 'UserController@profile_update')->name('user.profile.update');
+    Route::get('show-services','UserController@show_services')->name('show.services');
+
+        
 
         //user profile
         // Route::get('/profile', 'User\UserProfileController@profile')->name('user.profile');
@@ -94,6 +102,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 
+
 Route::get('/change-password', 'UserController@change_password')->name('user.change.pass');
 Route::post('/change-password-save', 'UserController@change_password_save')->name('user.pass.update');
+
 
