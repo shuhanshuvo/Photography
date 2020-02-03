@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Service;
+use App\Order;
 
 class UserController extends Controller
 {
@@ -83,4 +84,8 @@ class UserController extends Controller
         $services = Service::all();
         return view('user.show_services',compact('services'));
     }
+
+
+
+
 }

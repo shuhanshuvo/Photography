@@ -124,7 +124,7 @@
                     <li>
                         <a href="{{route('add.service.page')}}">
                             <i class="fe-airplay"></i>
-                            <span> Services </span>
+                            <span> Add Services </span>
                         </a>
                     </li>
                     <li>

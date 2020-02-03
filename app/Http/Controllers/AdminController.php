@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
 use App\User;
 use App\Admin;
 use App\ Service;
@@ -20,8 +21,8 @@ class AdminController extends Controller
 
     public function users_get()
     {
-    	$users = User::all();
-    	return view('admin.user.user',compact('users'));
+    	 $users = User::all();
+         return view('admin.user.user', compact('users'));
     }
 
     // public function user_delete(Request $request)
@@ -30,6 +31,9 @@ class AdminController extends Controller
     //     $user->delete();
     //     return back()->with('success','User Deleted');
     // }
+
+    
+
     public function user_delete($id)
     {
         User::findOrFail($id)->delete();
@@ -79,14 +83,37 @@ class AdminController extends Controller
            return back()->with('success','Service Added');
         }
 
-         public function all_service()
-         {
-            $services = Service::all();
-            return view ('admin.services.all_services', compact('services'));
-         }
 
+     public function edit_service($id)
+     {
+        $service = Service::find($id);
+        return view('admin.services.edit_service',compact('service')); 
+     }
 
-         public function service_delete($id)
+    public function update_service(Request $request)
+    
+    {
+        $service = Service::where('id',$request->service_id)->first();
+        $service->service_name = $request->service_name;
+        $service->price = $request->price;
+        $service->description = $request->description;
+        $service->save();
+
+        return back()->with('success','service Updated');
+    }    
+
+     public function all_service()
+     {
+        $services = Service::all();
+        return view ('admin.services.all_services', compact('services'));
+     }
+
+     // public function edit_service($id){
+     //   $service = Service::find($id);
+     //   return redirect()->back()->with(compact('service'));
+     // }
+
+     public function service_delete($id)
     {
         Service::findOrFail($id)->delete();
         return back()->with('success','Service Deleted');
@@ -94,22 +121,35 @@ class AdminController extends Controller
 
 
 
-     public function user_profile_update(Request $request)
+
+    public function edit_user($id)
+    {
+        // $user_id = Auth::user()->id;
+        $user = User::find($id);
+        return view('admin.user.edit_user_profile',compact('user')); 
+    }
+
+    public function update_user(Request $request)
     {   
-
-        return $data = $request->all();
-        $user = User::where('id',Auth::user()->id)->first();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->company = $request->company;
-        $user->address = $request->address;
-        $user->country = $request->country;
-        $user->zip = $request->zip;
-        $user->phone = $request->phone;
-        $user->save();
-
+        $id = $request->id;
+        $input=$request->all();
+        $data=User::findOrFail($id);
+        $data->update($input);
         return back()->with('success','Profile Updated');
+        // $user_id = Auth::user()->id;
+        // $user = User::find($user_id);
+        // $user->first_name    = $request->first_name;
+        // $user->last_name     = $request->last_name;
+        // $user->email         = $request->email;
+        // $user->company       = $request->company;
+        // $user->address       = $request->address;
+        // $user->country       = $request->country;
+        // $user->zip           = $request->zip;
+        // $user->phone         = $request->phone;
+
+        // $user->save();
+
+        // return back()->with('success','Profile Updated');
     }
 
 

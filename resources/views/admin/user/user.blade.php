@@ -56,7 +56,7 @@
                   <td>{{ $user->zip }}</td>
                   <td>{{ $user->phone }}</td>
                   <td>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                      <a href="{{route('admin.edit.user',$user->id)}}" class="btn btn-primary" >Edit</a>
 
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteuser">delete</button>
                   </td>
@@ -66,80 +66,6 @@
         </tbody>
         
     </table>
-
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit User Profile</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-        <div class="col-lg-12">
-
-            <div class="card-box">
-
-                <form class="parsley-examples" action="{{route('admin.user.profile.update')}}" novalidate="" method="post">
-                    @csrf
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="emailaddress">First Name</label>
-                            <input type="hidden" name="edit_user" value="{{$user->id}}">
-                            <input class="form-control" type="text" name="first_name" value="{{$user->first_name}}" id="emailaddress" required="" placeholder="Enter your email" >
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="emailaddress">Last Name</label>
-                            <input class="form-control" type="text" name="last_name" value="{{$user->last_name}}" id="emailaddress" required="" placeholder="Enter your email" >
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="emailaddress">Email</label>
-                            <input class="form-control" type="email" name="email" value="{{$user->email}}" id="emailaddress" required="" placeholder="Enter your email" >
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="emailaddress">Company</label>
-                            <input class="form-control" type="text" name="company" value="{{$user->company}}" id="emailaddress" required="" placeholder="Enter your email" >
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="emailaddress">Address</label>
-                            <input class="form-control" type="text" name="address" value="{{$user->address}}" id="emailaddress" required="" placeholder="Enter your email" >
-                        </div>
-                        
-                        <div class="form-group col-md-6">
-                            <label for="emailaddress">Country</label>
-                            <input class="form-control" type="text" name="country" value="{{$user->country}}" id="emailaddress" required="" placeholder="Enter your email" >
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="emailaddress">Zip</label>
-                            <input class="form-control" type="text" name="zip" value="{{$user->zip}}" id="emailaddress" required="" placeholder="Enter your email" >
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="emailaddress">Phone</label>
-                            <input class="form-control" type="text" name="phone" value="{{$user->phone}}" id="emailaddress" required="" placeholder="Enter your email" >
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="form-group text-right mb-0">
-                        <button class="btn btn-gradient waves-effect waves-light" type="submit">
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </div> <!-- end card-box -->
-        </div>
-    </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
     <div class="modal fade" id="deleteuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

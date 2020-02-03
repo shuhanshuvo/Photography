@@ -15,7 +15,7 @@
       <p class="card-text">{{ $service->description }}</p>
     </div>
     <div class="card-footer">
-    	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteuser">Hire Photographer</button>
+    	<a href="{{route('payment.checkout',$service->id)}}" class="btn btn-primary">Hire Photographer</a>
       
     </div>
   </div>
@@ -37,7 +37,7 @@
                     </button>
                 </div>
 
-                <form action="#" method="get">
+                <form action="" method="get">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
