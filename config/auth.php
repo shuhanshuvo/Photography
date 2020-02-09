@@ -88,10 +88,10 @@ return [
             'model' => App\Admin::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'photographers' => [
+            'driver' => 'eloquent',
+            'model' => 'photographers',
+        ],
     ],
 
     /*
@@ -121,6 +121,12 @@ return [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 15,
+        ],
+
+        'photographers' => [
+            'provider' => 'photographers',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 

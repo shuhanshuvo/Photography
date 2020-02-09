@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Admin;
 use App\ Service;
+use App\Order;
+use App\Transaction;
 
 
 class AdminController extends Controller
@@ -151,6 +153,27 @@ class AdminController extends Controller
 
         // return back()->with('success','Profile Updated');
     }
+
+
+
+  public function all_order()
+  {
+   
+   $orders = Order::join('services','orders.service_id','=','services.id')
+            ->join('users','orders.user_id','=','users.id')
+            ->select('orders.*', 'services.service_name','users.first_name','users.last_name')
+            ->orderBy('orders.id','DESC')->get();
+            
+            return view('admin.order', compact('orders'));
+  }
+
+
+  public function all_tran()
+  {
+    $trans = Transaction::all();
+    return view('admin.tran', compact('trans'));
+  }
+
 
 
 

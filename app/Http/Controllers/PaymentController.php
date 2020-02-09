@@ -32,18 +32,16 @@ class PaymentController extends Controller
                     
          
         // insert Transaction
-         $bik_sender_num = $request->bik_sender_num;         
-         $roc_sender_num = $request->roc_sender_num;         
-         $bank_rec_num = $request->bank_rec_num;         
-         $bkash_tran_id = $request->bkash_tran_id;         
-         $rocket_tran_id = $request->rocket_tran_id;         
+         $sender_number = $request->sender_number;         
+         $trx_id = $request->trx_id;         
+         $bank_number = $request->bank_number;         
+         $paymentMethod = $request->paymentMethod;        
          $amount = $request->amount;         
          $tdata=array();
-            $tdata['bik_sender_num'] = $bik_sender_num;
-            $tdata['roc_sender_num'] = $roc_sender_num;
-            $tdata['bank_rec_num'] = $bank_rec_num;
-            $tdata['bkash_tran_id'] = $bkash_tran_id;
-            $tdata['rocket_tran_id'] = $rocket_tran_id;
+            $tdata['sender_number'] = $sender_number;
+            $tdata['trx_id'] = $trx_id;
+            $tdata['bank_number'] = $bank_number;
+            $tdata['paymentMethod'] = $paymentMethod;
             $tdata['amount'] = $amount;
 
             $order_id = DB::table('transactions')

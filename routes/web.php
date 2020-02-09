@@ -58,6 +58,11 @@ Route::group(['middleware' => ['auth:admin']], function() {
 
         Route::get('/service-delete/{id}', 'AdminController@service_delete')->name('admin.service.delete');
 
+        ///Order...
+
+        Route::get('all-order', 'AdminController@all_order')->name('admin.all.order');
+        Route::get('all-transaction', 'AdminController@all_tran')->name('admin.all.tran');
+
 
 
 

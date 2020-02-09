@@ -15,11 +15,10 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('bik_sender_num')->nullable();
-            $table->integer('roc_sender_num')->nullable();
-            $table->string('bank_rec_num')->nullable();
-            $table->string('bkash_tran_id')->nullable();
-            $table->string('rocket_tran_id')->nullable();
+            $table->integer('sender_number')->nullable();
+            $table->string('trx_id')->nullable();
+            $table->string('bank_number')->nullable();
+            $table->string('paymentMethod')->nullable();
             $table->integer('amount');
             $table->timestamps();
         });

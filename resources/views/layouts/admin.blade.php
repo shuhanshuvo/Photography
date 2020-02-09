@@ -133,6 +133,18 @@
                             <span>All Services </span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('admin.all.order')}}">
+                            <i class="fe-airplay"></i>
+                            <span>All Order </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.all.tran')}}">
+                            <i class="fe-airplay"></i>
+                            <span>Transaction Table</span>
+                        </a>
+                    </li>
 
 {{--                    <li>--}}
 {{--                        <a href="javascript: void(0);">--}}

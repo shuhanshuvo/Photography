@@ -1,108 +1,69 @@
 @extends('layouts.user')
 @section('user')
 
-<style type="text/css">
-      #paypalDiv {
-        display: none;
-      }
-      #bkashDiv {
-        width: 100%;
-        padding: 10px 0;
-        text-align: center;
-        background-color: lightblue;
-        margin-top: 8px;
-        display: none;
-      }
-      #rocketDiv {
-        width: 100%;
-        padding: 10px 0;
-        text-align: center;
-        background-color: lightblue;
-        margin-top: 8px;
-        display: none;
-      } 
-      #bankhDiv {
-        width: 100%;
-        padding: 10px 0;
-        text-align: center;
-        background-color: lightblue;
-        margin-top: 8px;
-        display: none;
-      }
-    </style>
- <!-- Bkash -->
+<br><br><br>
 
 
- <div>
-     <!-- <p><strong>Service Name:<strong>&nbsp;{{ $service->service_name }}</strong></p> -->
-     <!-- <p><strong>Price:</strong>&nbsp;{{ $service->price }}</p> -->
- </div>
 
-  <form action="{{route('checkout')}}" method="POST">
+<!-- bkash -->
+<form action="{{route('checkout')}}" method="POST">
     @csrf
-           <div class="custom-control custom-radio ">
-              <input id="debit" name="paymentMethod" value="b2" onclick="bkashFunction()" type="radio" class="custom-control-input" required="">
-              <input type="hidden" name="service_id" value="{{ $service->id }}">
-              <label class="custom-control-label" for="debit">Bkash</label>
-              <div class="card text-center" id="bkashDiv">
-                 <div class="card-header">
-                    <p align="justify">Fillup below form.Also note that 2% bKash "SEND MONEY" cost will be added with net price.Total amount you need to send us at <b>Tk {{ $service->price }} </b></p>
-                 </div>
-                 <div class="card-body">
-                    <label class="" for="debit">Bkash Sender Number</label>
-                    <input name="bik_sender_num" type="number" class="">&nbsp;&nbsp;&nbsp;
-                    <label class="">Bkash Transaction ID</label>
-                    <input name="bkash_tran_id" value=""  type="text" class="">
-                 </div>
-                    <input type="hidden" name="amount"  value="{{ $service->price }}">
-                 <div class="card-footer text-muted">
-                    Your personal data will be used to process your order,support your experience throughout this website,and  for other purposes described in yopu <strong>privacy policy</strong>.
-                 </div>
-              </div>
-           </div>
-           <!-- Rocket -->
-           <div class="custom-control custom-radio">
-              <input id="paypal" name="paymentMethod" value="r3" onclick="rocketFunction()" type="radio" class="custom-control-input" required="">
-              <label class="custom-control-label" for="paypal">Rocket</label>
-              <div class="card text-center" id="rocketDiv">
-                 <div class="card-header">
-                    <p align="justify">Fillup below form.Also note that 3% Rocket "SEND MONEY" cost will be added with net price.Total amount you need to send us at <b>Tk 1253.52</b></p>
-                 </div>
-                 <div class="card-body">
-                    <label class="" for="debit">Rocket Sender Number</label>
-                    <input name="roc_sender_num" type="number" class="">&nbsp;&nbsp;&nbsp;
-                    <label class="">Rocket Transaction ID</label>
-                    <input name="rocket_tran_id" value=""  type="text" class="">
-                 </div>
-                    <input type="hidden" name="amount"  value="{{ $service->price }}">
-                 <div class="card-footer text-muted">
-                    Your personal data will be used to process your order,support your experience throughout this website,and  for other purposes described in yopu <strong>privacy policy</strong>.
-                 </div>
-              </div>
-           </div>
-           <!-- Bank -->
-           <div class="custom-control custom-radio">
-              <input id="bank" name="paymentMethod" value="b4" onclick="bankFunction()" type="radio" class="custom-control-input" required="">
-              <label class="custom-control-label" for="bank">Bank</label>
-              <div class="card text-center" id="bankhDiv">
-                 <div class="card-header">
-                    <p align="justify">Fillup below form.Also note that 5% Bank "SEND MONEY" cost will be added with net price.Total amount you need to send us at <b>Tk 1253.52</b></p>
-                 </div>
-                 <div class="card-body">
-                    <p align="justify">Bank Account Number:<b>5415645641</b></p>
-                    <label class="">Bank Received No:</label>
-                    <input name="bank_rec_num" type="text">
-                 </div>
-                 <div class="card-footer text-muted">
-                    Your personal data will be used to process your order,support your experience throughout this website,and  for other purposes described in yopu <strong>privacy policy</strong>.
-                 </div>
-              </div>
-           </div>
+    <input type="hidden" name="amount" value="{{ $service->price }}">
+      <div class="form-check-inline">
+         <label class="form-check-label" for="radio2">
+          <input type="hidden" name="service_id" value="{{ $service->id }}">
+         <input type="radio" class="form-check-input" id="radio2" name="paymentMethod" value="bkash"  required="required"> <button type="button" data-toggle="collapse" data-target="#bkash_rocket"> <img src="https://lh3.googleusercontent.com/t_AmjRLX3-4Aoss0ABhG28QvdQ760Fl3h3TLicJYWjQQutrgaZXfxD8ih1K3MeF6fA" class="img-responsive" height="50px" width="50px"></button>
+         </label>
+      </div>
+      <!-- rocket -->
+      <div class="form-check-inline">
+         <label class="form-check-label" for="radio3">
+         <input type="radio" class="form-check-input" id="radio3" name="paymentMethod" value="rocket" required="required"><button type="button" data-toggle="collapse" data-target="#bkash_rocket"> <img src="https://is4-ssl.mzstatic.com/image/thumb/Purple113/v4/c6/42/53/c642539e-b5ce-22a0-51f8-f356aae38606/source/512x512bb.jpg" class="img-responsive" height="50px" width="50px"></button>
+         </label>
+      </div>
+      <!-- bank -->
+      <div class="form-check-inline">
+         <label class="form-check-label" for="radio4">
+         <input type="radio" class="form-check-input" id="radio4" name="paymentMethod" value="bank" required="required"><button type="button" data-toggle="collapse" data-target="#bank"> <img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_bank-512.png" class="img-responsive" height="50px" width="50px"></button>
+         </label>
+      </div>
+      <!-- bank data-target -->
+      <br><br>
+      <div id="bank" class="collapse card text-light bg-dark">
+         <div class="card-footer text-muted">
+            <p align="justify">Fillup below form.Also note that 5% Bank "SEND MONEY" cost will be added with net price.Total amount you need to send us at <b>Tk {{ $service->price }}</b></p>
+         </div>
+         <div class="card-body bg-light text-info">
+            <p align="justify">Bank Account Number:<b>5415645641</b></p>
+            <label class="">Bank Received No:</label>
+            <input name="bank_number" type="text">
+         </div>
+         <div class="card-footer text-muted">
+            Your personal data will be used to process your order,support your experience throughout this website,and  for other purposes described in yopu <strong>privacy policy</strong>.
+         </div>
         </div>
-        <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to Checkout</button>
-
-</form>
+      <!-- bkash-rocket data-target -->
+      <div id="bkash_rocket" class="collapse card text-light bg-dark">
+         <div class="card-footer text-muted">
+            <p align="justify">Fillup below form."SEND MONEY" cost will be added with net price.Total amount you need to send us at <b>Tk {{ $service->price }}</b></p>
+         </div>
+         <div class="card-body bg-light text-info">
+            <label class="" for="debit"> Sender Number</label>
+            <input name="sender_number" type="number" class="">&nbsp;&nbsp;&nbsp;
+            <label class=""> Transaction ID</label>
+            <input name="trx_id" value="" type="text" class="">
+         </div>
+         <div class="card-footer text-muted">
+            Your personal data will be used to process your order,support your experience throughout this website,and  for other purposes described in yopu <strong>privacy policy</strong>.
+         </div>
+      </div>
+      <br><br>
+      <div class="submit">
+         <button type="submit" class="btn btn-primary" >PLACE ORDER</button>
+      </div>
+   </form>
+                        
+<!-- <div id="paypal-button"></div> -->
 
 
 <script>
