@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\service\ServiceAdd;
 
 
 use App\User;
@@ -12,6 +13,7 @@ use App\Admin;
 use App\ Service;
 use App\Order;
 use App\Transaction;
+
 
 
 class AdminController extends Controller
@@ -172,6 +174,18 @@ class AdminController extends Controller
   {
     $trans = Transaction::all();
     return view('admin.tran', compact('trans'));
+  }
+
+
+
+
+
+  // notification
+
+  public function notif()
+  { 
+    $user = Auth::user();
+    $user->notify(new ServiceAdd(User::findOrFail(2)));
   }
 
 

@@ -100,3 +100,8 @@ Route::get('checkout/{id}','PaymentController@payment_checkout')->name('payment.
 Route::post('checkout','PaymentController@checkout')->name('checkout');
 
 
+// Notification
+
+Route::get('/notif','AdminController@notif');
+
+

@@ -35,6 +35,9 @@
                   <th class="th-sm">Amount
 
                   </th>
+                      <th class="th-sm">Action
+
+                  </th>
                    
             </tr>
         </thead>
@@ -48,6 +51,10 @@
                   <td>{{ $order->payment_method }}</td>
                   <td>sender number</td>
                   <td>{{ $order->amount }}</td>
+                   <td>
+                      <a href="#" class="btn btn-primary" >Edit</a>
+                      <a href="#" class="btn btn-primary" >Delete</a>
+                  </td>
                   
             </tr>
             @endforeach

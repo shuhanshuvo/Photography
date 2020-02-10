@@ -11,14 +11,17 @@ class ServiceAdd extends Notification
 {
     use Queueable;
 
+     public $user;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
-        //
+       $this->users = $user;
+       // $this->services = $service;
     }
 
     /**
@@ -29,33 +32,24 @@ class ServiceAdd extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-
+   
     /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            //
+
+            'user_id'=>$this->users->id,
+            'user_name'=>$this->users->name
+            // 'service_id'=>$this->services->id,
+            // 'service_name'=>$this->services->service_name
         ];
     }
 }

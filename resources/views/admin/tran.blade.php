@@ -16,23 +16,24 @@
         <thead>
             <tr>
                   
+                  <th class="th-sm">Payment Method
                   </th>
-                  <th class="th-sm">Bkash Number
+                  </th>
+                  <th class="th-sm">Sender Number
 
                   </th>
-                  <th class="th-sm">Bkash Transaction ID
+                  <th class="th-sm">Transaction ID
 
                   </th>
-                  <th class="th-sm">Rocket Number
-                  </th>
-                  <th class="th-sm">Rocket Transaction ID
-
-                  </th>
+                 
                   <th class="th-sm">Bank Number
 
                   </th>
                   <th class="th-sm">Amount
+
                   </th>
+              
+                
                    
             </tr>
         </thead>
@@ -40,12 +41,13 @@
             @foreach ($trans as $tran)
             <tr>
                   
-                  <td>{{ $tran->bik_sender_num }}</td>
-                  <td>{{ $tran->bkash_tran_id}}</td>
-                  <td>{{ $tran->roc_sender_num}}</td>
-                  <td>{{ $tran->rocket_tran_id}}</td>
-                  <td>{{ $tran->bank_rec_num}}</td>
-                  <td>{{ $tran->amount }}</td>
+                  <td>{{ $tran->paymentMethod}}</td>
+                  <td>{{ $tran->sender_number}}</td>
+                  <td>{{ $tran->trx_id}}</td>
+                  <td>{{ $tran->bank_number}}</td>
+                  <td>{{ $tran->amount}}</td>
+                 
+                 
                   
             </tr>
             @endforeach

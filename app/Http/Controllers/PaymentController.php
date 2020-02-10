@@ -17,7 +17,14 @@ class PaymentController extends Controller
     }
 
     public function checkout (Request $request)
-    {
+    {   
+        // $validatedData = $request->validate([
+        // 'sender_number' => 'required',
+        // 'trx_id' => 'required',
+        // 'bank_number' => 'required',
+        //  ]);
+
+
       	$data = $request->all();
     	 $user_id = Auth::User()->id;
         // insert order
