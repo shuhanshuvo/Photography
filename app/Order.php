@@ -9,4 +9,10 @@ class Order extends Model
      protected $fillable = [
         'service_id', 'user_id', 'order_status', 'payment_method', 'amount',
     ];
+
+    public function users()
+   {
+       return $this->belongsToMany('App\User');
+   }
+
 }

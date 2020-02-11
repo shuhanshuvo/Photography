@@ -133,12 +133,41 @@
                             <span>All Services </span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{route('admin.all.order')}}">
-                            <i class="fe-airplay"></i>
-                            <span>All Order </span>
-                        </a>
+                    
+
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                         <i class="fe-airplay"></i>
+                            <span>Orders</span>
+                         </a>
+
+
+                         <div class="dropdown-menu dropdown-menu-right ">
+ 
+                            <a href="{{route('admin.all.order')}}" class="dropdown-item ">
+                                
+                                <span>All Orders</span>
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a href="{{route('admin.complete.order')}}" class="dropdown-item notify-item">
+                                
+                                <span>Complete Order</span>
+                            </a>
+                            <a href="{{route('admin.reject.order')}}" class="dropdown-item notify-item">
+                                
+                                <span>Reject Order</span>
+                            </a>
+                           </div>
+                            
+                        
                     </li>
+
+                    
+
+
+
                     <li>
                         <a href="{{route('admin.all.tran')}}">
                             <i class="fe-airplay"></i>
@@ -247,3 +276,7 @@
 
 <!-- Mirrored from coderthemes.com/abstack/layouts/green/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 20:39:58 GMT -->
 </html>
+
+
+
+

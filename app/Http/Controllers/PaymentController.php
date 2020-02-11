@@ -33,7 +33,7 @@ class PaymentController extends Controller
         $odata['payment_method'] = $request->paymentMethod;
         $odata['amount'] = $request->amount;
         $odata['user_id'] = $user_id;
-        $odata['order_status'] = 'Pending';
+        $odata['order_status'] = '0';
       	$order_id = DB::table('orders')
                     ->insertGetId($odata);
                     
@@ -49,6 +49,7 @@ class PaymentController extends Controller
             $tdata['trx_id'] = $trx_id;
             $tdata['bank_number'] = $bank_number;
             $tdata['paymentMethod'] = $paymentMethod;
+           
             $tdata['amount'] = $amount;
 
             $order_id = DB::table('transactions')

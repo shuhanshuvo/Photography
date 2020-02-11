@@ -130,7 +130,7 @@
                             <span>Services</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#">
                             <i class="fe-airplay"></i>
                             <span> Pdf </span>
@@ -141,7 +141,7 @@
                             <i class="fe-airplay"></i>
                             <span> My Archives Pdf</span>
                         </a>
-                    </li>
+                    </li> -->
 
                 </ul>
 

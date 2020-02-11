@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->string('trx_id')->nullable();
             $table->string('bank_number')->nullable();
             $table->string('paymentMethod')->nullable();
+           
             $table->integer('amount');
             $table->timestamps();
         });

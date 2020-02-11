@@ -46,7 +46,13 @@ Route::group(['middleware' => ['auth:admin']], function() {
 
         Route::get('/user-delete/{id}', 'AdminController@user_delete')->name('admin.user.delete');
 
-        // Servicess
+
+        // Approve/ Disapprove
+
+        Route::get('/approve/{id}', 'AdminController@approve');
+        Route::get('/reject/{id}', 'AdminController@reject');
+
+        // Services
 
         Route::get('add-service-page','AdminController@add_service_page')->name('add.service.page');
         Route::post('add-service','AdminController@add_service')->name('add.service');
@@ -61,6 +67,8 @@ Route::group(['middleware' => ['auth:admin']], function() {
         ///Order...
 
         Route::get('all-order', 'AdminController@all_order')->name('admin.all.order');
+        Route::get('complete-order', 'AdminController@complete_order')->name('admin.complete.order');
+        Route::get('reject-order', 'AdminController@reject_order')->name('admin.reject.order');
         Route::get('all-transaction', 'AdminController@all_tran')->name('admin.all.tran');
 
 

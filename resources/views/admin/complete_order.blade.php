@@ -42,35 +42,26 @@
         <tbody>
             @foreach ($orders as $order)
             <tr>
-                  <td>{{ $order->id }}</td>
+            	@if($order->order_status =='1')
+            		<td>{{ $order->id }}</td>
                   <td>{{ $order->service_name }}</td>
                   <td>{{ $order->first_name }}&nbsp;{{ $order->last_name }}</td>
-                  <!-- <td>{{ $order->order_status }}</td> -->
-                 
-                  @if($order->order_status =='1')
-                  <td>Completed</td>
-                  @elseif($order->order_status =='2')
-                  <td>reject</td>
-                  @else
-                  <td>pending</td>
-                  @endif
-
                   <td>{{ $order->payment_method }}</td>
-                 
+                  <td>
+                  	{{ "Complete" }}
+                  </td>
                   <td>{{ $order->amount }}</td>
-                   <td>
-
+                  <td>
                     @if($order->order_status == 1)
-                      <a href="#" class="btn btn-primary" ><i class="fas fa-trash-alt"></i></a>
-
+                      <a href="#" class="btn btn-primary" ><i class="fas fa-times"></i></a>
 
                       @else
                       <a href="{{url('admin/approve',$order->id)}}" class="btn btn-primary" ><i class="fas fa-check"></i></a>
                       @endif
-                      <a href="{{url('admin/reject',$order->id)}}" class="btn btn-primary" ><i class="fas fa-times"></i></a>
-
+                      <a href="#" class="btn btn-primary" ><i class="fas fa-trash-alt"></i></a>
                   </td>
-                  
+            	@endif
+                 
             </tr>
             @endforeach
      

@@ -13,6 +13,7 @@ use App\Admin;
 use App\ Service;
 use App\Order;
 use App\Transaction;
+use DB;
 
 
 
@@ -170,6 +171,29 @@ class AdminController extends Controller
   }
 
 
+  public function complete_order()
+  {
+   
+   $orders = Order::join('services','orders.service_id','=','services.id')
+            ->join('users','orders.user_id','=','users.id')
+            ->select('orders.*', 'services.service_name','users.first_name','users.last_name')
+            ->orderBy('orders.id','DESC')->get();
+            
+            return view('admin.complete_order', compact('orders'));
+  }
+
+  public function reject_order()
+  {
+   
+   $orders = Order::join('services','orders.service_id','=','services.id')
+            ->join('users','orders.user_id','=','users.id')
+            ->select('orders.*', 'services.service_name','users.first_name','users.last_name')
+            ->orderBy('orders.id','DESC')->get();
+            
+            return view('admin.reject_order', compact('orders'));
+  }
+
+
   public function all_tran()
   {
     $trans = Transaction::all();
@@ -189,6 +213,30 @@ class AdminController extends Controller
   }
 
 
+  public function approve($id)
+  {
+    DB::table('orders')
+       ->where('id',$id)
+       ->update(['order_status' =>1]);
+
+         return back()->with('success','Approved');
+        //return a view or whatever you want tto do after
+    
+   }
+   public function reject($id)
+  {
+    DB::table('orders')
+       ->where('id',$id)
+       ->update(['order_status' =>2]);
+
+         return back()->with('success','Reject');
+        //return a view or whatever you want tto do after
+    
+   }
+
+
+
 
 
 }
+
