@@ -18,7 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/user_registration', 'UserController@user_registration');
+// Route::post('/user_registration', 'UserController@user_registration');
+
+Route::post('/custom-login', 'CustomLoginController@custom_login')->name('custom.login');
+Route::post('/custom-reg', 'CustomLoginController@custom_reg')->name('custom.reg');
+
 
 
 
@@ -41,10 +45,23 @@ Route::group(['middleware' => ['auth:admin']], function() {
         Route::post('/change-password-save', 'AdminController@change_password_save')->name('admin.pass.update');
 
         Route::get('/users-get', 'AdminController@users_get')->name('get.users');
-        Route::get('/edit-user/{id}', 'AdminController@edit_user')->name('admin.edit.user');
-        Route::post('/update-user', 'AdminController@update_user')->name('admin.update.user');
 
         Route::get('/user-delete/{id}', 'AdminController@user_delete')->name('admin.user.delete');
+        
+        //photographer.............
+
+        Route::get('/photographers-get', 'AdminController@photographers_get')->name('get.photographers');
+
+        Route::get('/edit-photo/{id}', 'AdminController@edit_photo')->name('admin.edit.photo');
+        Route::post('/update-photo', 'AdminController@update_photo')->name('admin.update.photo');
+
+
+        Route::get('/edit-user/{id}', 'AdminController@edit_user')->name('admin.edit.user');
+        Route::post('/update-user', 'AdminController@update_user')->name('admin.update.user');
+        Route::get('/photo-delete/{id}', 'AdminController@photo_delete')->name('admin.photo.delete');
+
+
+
 
 
         // Approve/ Disapprove
@@ -89,11 +106,22 @@ Route::group(['prefix' => 'home'], function (){
     Route::post('/profile-update', 'UserController@profile_update')->name('user.profile.update');
 
     Route::get('show-services','UserController@show_services')->name('show.services');
+    Route::get('user-dashboard', 'UserController@user_dashboard')->name('user.dashboard');
+
+    
 
         
     });
 });
 
+Route::group(['middleware' => ['auth:photographer']], function() {
+
+Route::get('photo-dashboard', 'UserController@photo_dashboard')->name('photo.dashbord');
+
+Route::get('/p-profile', 'UserController@p_profile')->name('p.profile');
+Route::post('/p-profile', 'UserController@update_p_profile')->name('p_profile_update');
+
+});
 
 
 

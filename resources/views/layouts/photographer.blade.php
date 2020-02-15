@@ -16,8 +16,6 @@
     <link href="{{asset('assets/dashboard/')}}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/dashboard/')}}/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/dashboard/')}}/css/app.min.css" rel="stylesheet" type="text/css" />
-    
-
     @yield('css')
 </head>
 
@@ -31,13 +29,9 @@
     <div class="navbar-custom">
         <ul class="list-unstyled topnav-menu float-right mb-0">
 
-
-
-
-
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <span class="ml-1">Welcome! {{Auth::user('admin')->name}} <i class="mdi mdi-chevron-down"></i> </span>
+                    <span class="ml-1">Welcome!  <i class="mdi mdi-chevron-down"></i> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
@@ -49,7 +43,7 @@
 
 
                     <!-- item-->
-                    <a href="{{route('admin.change.pass')}}" class="dropdown-item notify-item">
+                    <a href="{{route('user.change.pass')}}" class="dropdown-item notify-item">
                         <i class="fe-lock"></i>
                         <span>Change Password</span>
                     </a>
@@ -57,10 +51,15 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <a href="{{route('admin.logout')}}" class="dropdown-item notify-item">
+                    <a class="dropdown-item notify-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 
                 </div>
             </li>
@@ -72,7 +71,7 @@
 
         <!-- LOGO -->
         <div class="logo-box">
-            <a href="#" class="logo text-center">
+            <a href="{{route('home')}}" class="logo text-center">
                         <span class="logo-lg">
 
                      <span class="logo-lg-text-light">PHOTOGRAPHY</span>
@@ -110,89 +109,35 @@
                     <li class="menu-title">Main Menu</li>
 
                     <li>
-                        <a href="{{route('admin.dashbord')}}">
+                        <a href="{{route('home')}}">
                             <i class="fe-airplay"></i>
                             <span> Dashboard </span>
                         </a>
                     </li>
-
                     <li>
-                        <a href="{{route('get.photographers')}}">
+                        <a href="{{route('p.profile')}}">
                             <i class="fe-airplay"></i>
-                            <span> Photographers </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('get.users')}}">
-                            <i class="fe-airplay"></i>
-                            <span> Users </span>
+                            <span>Profile</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('add.service.page')}}">
+                        <a href="{{route('show.services')}}">
                             <i class="fe-airplay"></i>
-                            <span> Add Services </span>
+                            <span>Services</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="#">
+                            <i class="fe-airplay"></i>
+                            <span> Pdf </span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('all.services')}}">
+                        <a href="#">
                             <i class="fe-airplay"></i>
-                            <span>All Services </span>
+                            <span> My Archives Pdf</span>
                         </a>
-                    </li>
-                    
-
-                    <li class="dropdown">
-                        <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                         <i class="fe-airplay"></i>
-                            <span>Orders</span>
-                         </a>
-
-
-                         <div class="dropdown-menu dropdown-menu-right ">
- 
-                            <a href="{{route('admin.all.order')}}" class="dropdown-item ">
-                                
-                                <span>All Orders</span>
-                            </a>
-
-                            <div class="dropdown-divider"></div>
-
-                            <a href="{{route('admin.complete.order')}}" class="dropdown-item notify-item">
-                                
-                                <span>Complete Order</span>
-                            </a>
-                            <a href="{{route('admin.reject.order')}}" class="dropdown-item notify-item">
-                                
-                                <span>Reject Order</span>
-                            </a>
-                           </div>
-                            
-                        
-                    </li>
-
-                    
-
-
-
-                    <li>
-                        <a href="{{route('admin.all.tran')}}">
-                            <i class="fe-airplay"></i>
-                            <span>Transaction Table</span>
-                        </a>
-                    </li>
-
-{{--                    <li>--}}
-{{--                        <a href="javascript: void(0);">--}}
-{{--                            <i class="fe-briefcase"></i>--}}
-{{--                            <span> UI Kit </span>--}}
-{{--                            <span class="menu-arrow"></span>--}}
-{{--                        </a>--}}
-{{--                        <ul class="nav-second-level" aria-expanded="false">--}}
-{{--                            <li><a href="ui-typography.html">Typography</a></li>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
+                    </li> -->
 
                 </ul>
 
@@ -211,13 +156,13 @@
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
 
-    <div class="content-page">
+ <div class="content-page">
         <div class="content">
 
             <!-- Start Content-->
             <div class="container-fluid">
-
-             @yield('admin')
+                
+                @yield('photographer')
 
 
 
@@ -233,7 +178,27 @@
                 <div class="row">
                     <div class="col-md-12">
                         <?php
-                        $date = \Carbon\Carbon::now()->format('Y');
+                            $date = \Carbon\Carbon::now()->format('Y');
+                        ?>
+                        {{$date}} &copy; Developed by <a href="#">Galaxy Global It</a>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php
+                            $date = \Carbon\Carbon::now()->format('Y');
                         ?>
                         {{$date}} &copy; Developed by <a href="#">Galaxy Global It</a>
                     </div>
@@ -266,25 +231,14 @@
 <script src="{{asset('assets/dashboard/')}}/libs/chart-js/Chart.bundle.min.js"></script>
 
 <!-- Init js -->
-<script src="{{asset('assets/dashboard/')}}/js/pages/dashboard.init.js"></script>
+
 
 <!-- App js -->
 <script src="{{asset('assets/dashboard/')}}/js/app.min.js"></script>
 @yield('js')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @include('layouts.message')
-
-<script>
-    $(document).ready(function () {
-  $('#dtBasicExample').DataTable();
-  $('.dataTables_length').addClass('bs-select');
-});
-</script>
 </body>
 
 <!-- Mirrored from coderthemes.com/abstack/layouts/green/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Jan 2020 20:39:58 GMT -->
 </html>
-
-
-
-

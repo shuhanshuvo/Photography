@@ -19,9 +19,19 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         switch ($guard){
-            case 'admin':
+            case 'web':
+                if(Auth::guard($guard)->check()){
+                    return redirect()->route('user.dashboard');
+                }
+                break;
+                case 'admin':
                 if(Auth::guard($guard)->check()){
                     return redirect()->route('admin.dashbord');
+                }
+                break;
+                case 'photographer':
+                if(Auth::guard($guard)->check()){
+                    return redirect()->route('photo.dashbord');
                 }
                 break;
 

@@ -53,6 +53,15 @@ return [
             'provider' => 'admins',
         ],
 
+        'photographer' => [
+            'driver' => 'session',
+            'provider' => 'photographers',
+        ],
+         'photographer-api' => [
+            'driver' => 'token',
+            'provider' => 'photographers',
+        ],
+
         //this is for admin api
         'admin-api' => [
             'driver' => 'token',
@@ -90,8 +99,10 @@ return [
 
         'photographers' => [
             'driver' => 'eloquent',
-            'model' => 'photographers',
+            'model' => App\Photographer::class,
         ],
+
+        
     ],
 
     /*

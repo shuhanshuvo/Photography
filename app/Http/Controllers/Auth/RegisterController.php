@@ -39,6 +39,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('guest:photographer');
     }
 
     /**
@@ -75,5 +76,17 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+
+    protected function createPhotographer(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $writer = Writer::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect()->intended('login/photographer');
     }
 }

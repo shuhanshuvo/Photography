@@ -14,6 +14,7 @@ use App\ Service;
 use App\Order;
 use App\Transaction;
 use DB;
+use App\Photographer;
 
 
 
@@ -29,6 +30,20 @@ class AdminController extends Controller
     	 $users = User::all();
          return view('admin.user.user', compact('users'));
     }
+
+
+    public function photographers_get()
+    {
+       $photographers = Photographer::all();
+         return view('admin.photographer.photographer', compact('photographers'));
+    }
+
+     public function photo_delete($id)
+    {
+        Photographer::findOrFail($id)->delete();
+        return back()->with('success','User Deleted');
+    }
+
 
     // public function user_delete(Request $request)
     // {
@@ -54,7 +69,13 @@ class AdminController extends Controller
     }
 
     public function change_password_save(Request $request)
-    {
+    {   
+      $this->validate($request,[
+        'npass' => 'required',
+        'cpass' => 'required',
+        
+      ]);
+
         $npass = $request->n_pass;
         $cpass = $request->c_pass;
         if ($npass != $cpass)
@@ -132,6 +153,40 @@ class AdminController extends Controller
         // $user_id = Auth::user()->id;
         $user = User::find($id);
         return view('admin.user.edit_user_profile',compact('user')); 
+    }
+
+
+     public function edit_photo($id)
+    {
+        // $user_id = Auth::user()->id;
+        $photographer = Photographer::find($id);
+        return view('admin.photographer.edit_photo',compact('photographer')); 
+    }
+
+
+
+
+    public function update_photo(Request $request)
+    {   
+        $id = $request->id;
+        $input=$request->all();
+        $data=Photographer::findOrFail($id);
+        $data->update($input);
+        return back()->with('success','Profile Updated');
+        // $user_id = Auth::user()->id;
+        // $user = User::find($user_id);
+        // $user->first_name    = $request->first_name;
+        // $user->last_name     = $request->last_name;
+        // $user->email         = $request->email;
+        // $user->company       = $request->company;
+        // $user->address       = $request->address;
+        // $user->country       = $request->country;
+        // $user->zip           = $request->zip;
+        // $user->phone         = $request->phone;
+
+        // $user->save();
+
+        // return back()->with('success','Profile Updated');
     }
 
     public function update_user(Request $request)

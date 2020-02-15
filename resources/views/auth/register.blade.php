@@ -37,10 +37,18 @@
 
                         </div>
 
-                        <form action="{{ url('/user_registration') }}" method="POST">
+                        <form action="{{ route('custom.reg') }}" method="POST">
                             @csrf
 
                             <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="first_name">User Type</label>
+                                    <select class="form-control" name="type">
+                                        <option value="0">select any</option>
+                                        <option value="1">User</option>
+                                        <option value="2">Photo</option>
+                                    </select>
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="first_name">First Name</label>
                                     <input class="form-control" type="text" name="first_name" id="emailaddress" required="" placeholder="Enter your first name" >
