@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Generalsettings;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +26,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        view()->composer('*', function ($view) {
+           $gnrlstng = Generalsettings::orderBy('id','DESC')->first();
+           return $view->with('gnrlstng',$gnrlstng);
+        });
     }
 }

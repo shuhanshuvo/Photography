@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Service;
 use Auth;
 use DB;
+use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
@@ -34,6 +35,8 @@ class PaymentController extends Controller
         $odata['amount'] = $request->amount;
         $odata['user_id'] = $user_id;
         $odata['order_status'] = '0';
+        $random = $user_id.str::random(10);
+        $odata['ran_ordr_id'] = $random;
       	$order_id = DB::table('orders')
                     ->insertGetId($odata);
                     

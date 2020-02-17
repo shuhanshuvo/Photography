@@ -62,6 +62,16 @@ Route::group(['middleware' => ['auth:admin']], function() {
 
 
 
+        ///General Settings
+
+        Route::get('/general-settings', 'GeneralSettingController@g_settings')->name('admin.general.settings');
+        Route::post('/general-settings', 'GeneralSettingController@store_g_settings')->name('admin.store.general.settings');
+
+
+
+
+
+
 
 
         // Approve/ Disapprove
@@ -115,13 +125,21 @@ Route::group(['prefix' => 'home'], function (){
 });
 
 Route::group(['middleware' => ['auth:photographer']], function() {
+    // Route::group(['prefix' => 'home'], function (){
+    // Route::get('/', 'HomeController@index')->name('home');
+
 
 Route::get('photo-dashboard', 'UserController@photo_dashboard')->name('photo.dashbord');
 
 Route::get('/p-profile', 'UserController@p_profile')->name('p.profile');
 Route::post('/p-profile', 'UserController@update_p_profile')->name('p_profile_update');
 
+
+Route::get('/p-change-password', 'UserController@p_change_password')->name('photo.change.pass');
+Route::post('/p_change-password-save', 'UserController@p_change_password_save')->name('photo.pass.update');
+
 });
+// });
 
 
 

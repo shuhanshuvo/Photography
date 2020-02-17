@@ -71,8 +71,7 @@ class AdminController extends Controller
     public function change_password_save(Request $request)
     {   
       $this->validate($request,[
-        'npass' => 'required',
-        'cpass' => 'required',
+        
         
       ]);
 
@@ -216,7 +215,7 @@ class AdminController extends Controller
 
   public function all_order()
   {
-   
+   Order::where('order_status',0)->update(['order_status'=>4]);
    $orders = Order::join('services','orders.service_id','=','services.id')
             ->join('users','orders.user_id','=','users.id')
             ->select('orders.*', 'services.service_name','users.first_name','users.last_name')
@@ -228,7 +227,7 @@ class AdminController extends Controller
 
   public function complete_order()
   {
-   
+
    $orders = Order::join('services','orders.service_id','=','services.id')
             ->join('users','orders.user_id','=','users.id')
             ->select('orders.*', 'services.service_name','users.first_name','users.last_name')

@@ -18,7 +18,7 @@
                <label class="form-check-label" for="radio2">
                <input type="hidden" name="service_id" value="{{ $service->id }}">
                <input type="radio" class="form-check-input payment bkashCheck1" id="radio2" name="paymentMethod" value="bkash"  required="required"> 
-               <button type="button" data-toggle="collapse" class="bkashCheck1" data-target="#bkash"> <img src="https://lh3.googleusercontent.com/t_AmjRLX3-4Aoss0ABhG28QvdQ760Fl3h3TLicJYWjQQutrgaZXfxD8ih1K3MeF6fA" class="img-responsive" class="" height="50px" width="50px"></button>
+              <img src="https://lh3.googleusercontent.com/t_AmjRLX3-4Aoss0ABhG28QvdQ760Fl3h3TLicJYWjQQutrgaZXfxD8ih1K3MeF6fA" class="img-responsive" class="" height="50px" width="50px">
                </label>
             </div>
 
@@ -27,7 +27,7 @@
             <div class="form-check-inline">
                <label class="form-check-label" for="radio3">
                <input type="radio" class="form-check-input payment rocketCheck2" id="radio3" name="paymentMethod" value="rocket" required="required">
-               <button type="button" data-toggle="collapse" class="rocketCheck2" data-target="#rocket"> <img src="https://is4-ssl.mzstatic.com/image/thumb/Purple113/v4/c6/42/53/c642539e-b5ce-22a0-51f8-f356aae38606/source/512x512bb.jpg" class="img-responsive" class="img-responsive" height="50px" width="50px"></button>
+              <img src="https://is4-ssl.mzstatic.com/image/thumb/Purple113/v4/c6/42/53/c642539e-b5ce-22a0-51f8-f356aae38606/source/512x512bb.jpg" class="img-responsive" class="img-responsive" height="50px" width="50px">
                </label>
             </div>
 
@@ -36,7 +36,7 @@
             <div class="form-check-inline">
                <label class="form-check-label" for="radio4">
                <input type="radio" class="form-check-input payment bankCheck1" id="radio4" name="paymentMethod" value="bank" required="required">
-               <button type="button" data-toggle="collapse" class="bankCheck1" data-target="#bank"> <img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_bank-512.png" class="img-responsive" height="50px" width="50px"></button>
+              <img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_bank-512.png" class="img-responsive" height="50px" width="50px">
                </label>
             </div>
             <br><br>

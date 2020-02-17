@@ -66,11 +66,7 @@ class UserController extends Controller
 
     public function change_password_save(Request $request)
     {   
-         $this->validate($request,[
-        'npass' => 'required',
-        'cpass' => 'required',
         
-      ]);
 
         $npass = $request->n_pass;
         $cpass = $request->c_pass;
@@ -79,6 +75,30 @@ class UserController extends Controller
             return back()->with('alert','Password Not Match');
         }else{
             $user = User::where('id',Auth::user()->id)->first();
+            $user->password = Hash::make($npass);
+            $user->save();
+            return back()->with('success','Password Changed');
+        }
+    }
+
+
+    public function p_change_password()
+    {
+        return view('photographer.changePassword');
+    }
+
+
+    public function p_change_password_save(Request $request)
+    {   
+        
+
+        $npass = $request->n_pass;
+        $cpass = $request->c_pass;
+        if ($npass != $cpass)
+        {
+            return back()->with('alert','Password Not Match');
+        }else{
+            $user = Photographer::where('id',Auth::user()->id)->first();
             $user->password = Hash::make($npass);
             $user->save();
             return back()->with('success','Password Changed');

@@ -30,6 +30,32 @@
         <ul class="list-unstyled topnav-menu float-right mb-0">
 
 
+              <li class="nav-item avatar dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <?php
+                    $all_not = App\Order::orderBy('order_status','DESC')->count();
+                    $admin_app_not = App\Order::where('order_status',1)->count();
+                    $pending = App\Order::where('order_status',0)->count();
+                    $reject = App\Order::where('order_status',2)->count();
+                ?>
+               
+                  <span class="badge badge-danger ml-2">{{ $all_not }}</span>
+                  <i class="fas fa-bell"></i>
+                  
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-5">
+                  <a class="dropdown-item waves-effect waves-light" href="#"> Another<span class="badge badge-danger ml-2">{{ $admin_app_not }}</span></a>
+                  <a class="dropdown-item waves-effect waves-light" href="#">Another action <span class="badge badge-danger ml-2">{{ $pending }}</span></a>
+                  <a class="dropdown-item waves-effect waves-light" href="#">Something else here <span class="badge badge-danger ml-2">{{ $reject }}</span></a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">see all</a>
+                </div>
+              </li>
+
+<!-- 
+              <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><span class="badge badge-danger"></span><i class="fa fa-bell-o fa-lg"></i></a>
+          <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">You have  new order notifications.</li></ul></li> -->
+
 
 
 

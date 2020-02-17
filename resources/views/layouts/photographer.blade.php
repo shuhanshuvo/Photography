@@ -31,7 +31,7 @@
 
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <span class="ml-1">Welcome!  <i class="mdi mdi-chevron-down"></i> </span>
+                    <span class="ml-1">Welcome! {{Auth::user('photographer')->first_name}} <i class="mdi mdi-chevron-down"></i> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
@@ -43,7 +43,7 @@
 
 
                     <!-- item-->
-                    <a href="{{route('user.change.pass')}}" class="dropdown-item notify-item">
+                    <a href="{{route('photo.change.pass')}}" class="dropdown-item notify-item">
                         <i class="fe-lock"></i>
                         <span>Change Password</span>
                     </a>
@@ -109,7 +109,7 @@
                     <li class="menu-title">Main Menu</li>
 
                     <li>
-                        <a href="{{route('home')}}">
+                        <a href="{{route('photo.dashbord')}}">
                             <i class="fe-airplay"></i>
                             <span> Dashboard </span>
                         </a>
@@ -121,7 +121,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('show.services')}}">
+                        <a href="#">
                             <i class="fe-airplay"></i>
                             <span>Services</span>
                         </a>
